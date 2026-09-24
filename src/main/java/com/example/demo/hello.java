@@ -3,13 +3,11 @@ package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.interfaces.computer;
 
 @RestController
-
 public class hello {
 
 
@@ -27,9 +25,9 @@ public class hello {
     
     computer name;
 
-    @RequestMapping("/")
-    public String printHello()
-    {
-        return name.compile()+"HelloWorld";
-    }
+//     @RequestMapping("/")
+//     public String printHello()
+//     {
+//         return name.compile()+"HelloWorld";
+//     }
 }
