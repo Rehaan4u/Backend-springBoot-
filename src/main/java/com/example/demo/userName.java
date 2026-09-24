@@ -1,8 +1,13 @@
 package com.example.demo;
 
-public class userName {
+import org.springframework.stereotype.Component;
 
-    public String printUserName() {
-        return "Rehaan";
+import com.example.demo.interfaces.computer;
+
+@Component 
+public class userName implements computer {
+
+    public String compile() {
+        return "Rehaan implements the computer interface";
     }
 }
