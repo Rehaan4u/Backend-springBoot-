@@ -2,6 +2,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,14 @@ public class hello {
     //they are ByDefault declared as null and you can't access the methods of Object declared as null
 
     @Autowired
+    //WE use Qualifier when more than 1 class use the same interface, as now it will create confusion so to avoid that
+    //we use @Qualifier and tell the compiler to inject this class, and 
+    /*  **VERY VERY IMPORTANT: To declare the classes in Qualifier the first alphabet of the class name should start 
+        with lowercase irrespective of the class name*/
+    @Qualifier("username1")
     //Here we have changed the type to the interface that hello class implements 
     //cause @Autowired injects Ocjects on the basisi of type and not according to the name
+    
     computer name;
 
     @RequestMapping("/")
