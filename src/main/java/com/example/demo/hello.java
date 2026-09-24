@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class hello {
+
+
+    //Very important concept here, when you declare the Objects of other class like this
+    //they are ByDefault declared as null and you can't access the methods of Object declared as null
+    userName name;
+
     @RequestMapping("/")
     public String printHello()
     {
-        return "HelloWorld";
+        return name.printUserName()+"HelloWorld";
     }
 }
