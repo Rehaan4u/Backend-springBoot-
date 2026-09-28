@@ -1,12 +1,58 @@
 package com.example.demo.Controllers;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController 
+import com.example.demo.Models.userData;
+import com.example.demo.Services.userDataService;
+
+
+    @RestController 
 public class HomeController {
-    @RequestMapping 
-    public String printControllerMsg() {
-        return "Message from Home Controller";
-    }   
+        @Autowired 
+        userDataService userService;
+    
+     //-------------------------------------------------------------------------//    
+
+        @RequestMapping("/")
+        public String printControllerMsg() {
+            return "Message from Home Controller";
+        }   
+
+    //-------------------------------------------------------------------------//
+
+        @RequestMapping ("/products")
+        public List<userData> AllUserList()
+        {
+        //    List<userData> userDataList = Arrays.asList(
+        //          new userData(101,"Rehaan", "Makhija"),
+        //          new userData(102,"Nandini","Chaabra"),
+        //          new userData(103,"Tiya","Singh")
+        //     );
+            return userService.AllData();
+        }
+    //-------------------------------------------------------------------------//
+
+        @RequestMapping("/products/{prodID}")
+        public userData GetUserDataUsingID(@PathVariable String prodID)
+        {   
+            return userService.targetUserData(prodID);
+
+        }
+    //-------------------------------------------------------------------------//
+
+       @PostMapping 
+        public String postUserData(userData user)
+        {
+            return userService.addUser(user);
+        }
+
+    
 }
+
+

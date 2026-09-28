@@ -1,7 +1,9 @@
 package com.example.demo.Services;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Models.userData;
@@ -10,49 +12,73 @@ import com.example.demo.Models.userData;
 @RestController 
 public class userDataService {
 
-        private userData[] AllUsers= new userData[]
+    //Declared the Variable, basically an array for the userData Objects
+
+        
+        protected  final List<userData> AllUsers= new ArrayList<>();
+
+        userDataService()
         {
-            new userData(101,"Rehaan", "Makhija"),
-            new userData(102,"Nandini","Chaabra"),
-            new userData(103,"Tiya","Singh")
-        };
-
-    @RequestMapping ("/products")
-    public userData[] AllUserList()
-    {
-    //    List<userData> userDataList = Arrays.asList(
-    //          new userData(101,"Rehaan", "Makhija"),
-    //          new userData(102,"Nandini","Chaabra"),
-    //          new userData(103,"Tiya","Singh")
-    //     );
-        return AllUsers;
-    }
-
-    @RequestMapping("/products/{prodID}")
-    public userData targetUserData(@PathVariable String prodID)
-    {
-        userData[] listOfUsers = AllUsers;
-        int tgtID=Integer.parseInt(prodID);
-        int mid=-1;
-        int s=0,e=listOfUsers.length;
-        userData user=new userData(-1,"No User Avaiblable ", "Check your ID again");
-
-        while(s<=e)
-        {
-            mid=s+(e-s)/2;
-            if(listOfUsers[mid].id==tgtID)
-            {
-                user=listOfUsers[mid];
-                break;
-            }
-            else if(listOfUsers[mid].id>tgtID)
-            {   
-                e=mid-1;
-            }
-            else s=mid+1;
-
+            initialSomeValues();
         }
-        return user;
-    }
 
+        public void initialSomeValues()
+        {
+            AllUsers.add(new userData(102,"Nandini","Chaabra"));
+            AllUsers.add(new userData(103,"Tiya","Singh"));
+        }
+//--------------------------------------------------------------------------------------------------------//
+
+        public List<userData> AllData()
+        {
+            return AllUsers;
+        }
+
+
+//--------------------------------------------------------------------------------------------------------//
+
+        public userData targetUserData(String userID)
+        {
+            List<userData> listOfUsers = AllUsers;
+            int tgtID=Integer.parseInt(userID);
+            int mid=-1;
+            int s=0,e=listOfUsers.size()-1;
+            userData user=new userData
+            ( -1,
+            "No User Avaiblable ", 
+             "Check your ID again"
+            );
+
+                while(s<=e)
+                {
+                    mid=s+(e-s)/2;
+                    userData tempUser= listOfUsers.get(mid);
+                    if(tempUser.id==tgtID)
+                    {
+                        user=tempUser;
+                        break;
+                    }
+                    else if(tempUser.id>tgtID)
+                    {   
+                        e=mid-1;
+                    }
+                    else s=mid+1;
+
+                }
+                return user;
+        }
+
+
+//-------------------------------------------------------------------------------------//
+
+    public String addUser(userData userInput)
+    {
+        if(userInput!=null)
+        {
+            AllUsers.add(userInput);
+            return "User Added Sucessfully";
+        }
+        else return "Error in adding User";
+        
+    }
 }
