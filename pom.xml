@@ -32,6 +32,8 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
+		<!-- In the newer versions for the Spring Boot 4.x, the h2 team has seperated out the Console out of the major bundle we get from 
+		h2 database -->
 		<dependency>
    			 <groupId>org.springframework.boot</groupId>
   			 <artifactId>spring-boot-h2console</artifactId>
