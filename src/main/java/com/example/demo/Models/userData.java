@@ -1,8 +1,13 @@
 package com.example.demo.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity 
 public class userData {
 
-    public int id;
+    @Id 
+    public Integer id;
     public String FirstName;
     public String LastName;  
 

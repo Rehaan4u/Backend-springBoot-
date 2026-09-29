@@ -14,6 +14,8 @@ import com.example.demo.Services.userDataService;
 
     @RestController 
 public class HomeController {
+
+
         @Autowired 
         userDataService userService;
     
@@ -38,8 +40,10 @@ public class HomeController {
         }
     //-------------------------------------------------------------------------//
 
+    //Whatever value you fetch from the URL is By Default String, and you can do the type conversion using the 
+        //@PathVariable itself. see below we have converted the String value into INTEGER 
         @RequestMapping("/products/{prodID}")
-        public userData GetUserDataUsingID(@PathVariable String prodID)
+        public userData GetUserDataUsingID(@PathVariable Integer prodID)
         {   
             return userService.targetUserData(prodID);
 
@@ -51,7 +55,7 @@ public class HomeController {
         {
             return userService.addUser(user);
         }
-
+    //-------------------------------------------------------------------------//
     
 }
 
