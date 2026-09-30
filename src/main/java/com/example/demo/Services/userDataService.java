@@ -10,7 +10,6 @@ import com.example.demo.Models.userData;
 import com.example.demo.Repository.userDataRepo;
 
 @Service 
-
 public class userDataService {
 
     //VERY important thing, we have not created hte class fro the Repository interface But still AutoWired works, 
@@ -44,7 +43,7 @@ public class userDataService {
 
 //--------------------------------------------------------------------------------------------------------//
 
-        public userData targetUserData(Integer userID)
+        public userData targetUserData(String userID)
         {
             // List<userData> listOfUsers = AllUsers;
             // int tgtID=Integer.parseInt(userID);
@@ -73,7 +72,9 @@ public class userDataService {
 
             //     }
             //     return user;
-            return userDataRepo.findById(userID).orElse(new userData(-1, "User NOT Found", "Check the ID"));
+
+            return userDataRepo.findById(Integer.parseInt(userID)).orElse(new userData(-1, "User NOT Found", "Check the ID"));
+                
         }
 
 

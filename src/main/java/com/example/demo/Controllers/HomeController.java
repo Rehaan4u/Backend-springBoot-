@@ -3,7 +3,6 @@ package com.example.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +11,7 @@ import com.example.demo.Models.userData;
 import com.example.demo.Services.userDataService;
 
 
-    @RestController 
+@RestController 
 public class HomeController {
 
 
@@ -42,12 +41,11 @@ public class HomeController {
 
     //Whatever value you fetch from the URL is By Default String, and you can do the type conversion using the 
         //@PathVariable itself. see below we have converted the String value into INTEGER 
-        @RequestMapping("/products/{prodID}")
-        public userData GetUserDataUsingID(@PathVariable Integer prodID)
-        {   
-            return userService.targetUserData(prodID);
 
-        }
+        //But the issue with the @PathVariable Integer was that, I was not able to call the h2-console, as for h2 internal Controller
+        //that comes with the package, has the @Controller setted fro String not the Integer
+       
+
     //-------------------------------------------------------------------------//
 
        @PostMapping 
@@ -58,5 +56,7 @@ public class HomeController {
     //-------------------------------------------------------------------------//
     
 }
+//Seperate class for each site such as {/users,/products, /home}
+
 
 
