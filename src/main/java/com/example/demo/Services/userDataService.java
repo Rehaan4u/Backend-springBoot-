@@ -15,6 +15,7 @@ public class userDataService {
         //cause here we are injecting the Dynamic bean created by the Spring Data JPA and managed by the @EntityManager
     @Autowired 
     public userDataRepo userDataRepo;
+    public userData userData;
 
     //Declared the Variable, basically an array for the userData Objects
 
@@ -93,5 +94,11 @@ public class userDataService {
         }
         else return "Error in adding the user";
         
+    }
+//--------------------------------------------------------------------------------------------------------//
+
+    public userData updateExistingUser(Integer id, userData newUserData)
+    {
+        return this.userDataRepo.save(newUserData);
     }
 }

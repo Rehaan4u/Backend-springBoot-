@@ -3,8 +3,12 @@ package com.example.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +20,7 @@ import com.example.demo.Services.userDataService;
 //Veru important to note, the RequestMAppign is declared for /products and any methods you declare inside the class, 
 //just gets added into the /products path
 @RestController 
+@CrossOrigin 
  @RequestMapping("/users")
         public class UserController{
 
@@ -23,7 +28,9 @@ import com.example.demo.Services.userDataService;
             userDataService userService;
             userData userData;
 
-            //like here the request path would look like /products/userid like 101,102
+        //-------------------------------------------------------------------------//
+            //like here the request path would look like /products/userid 
+            // like 101,102
             @GetMapping ("/{userID}")
             public userData ProducstsWithParticularId(@PathVariable String userID)
                 {   
@@ -31,6 +38,7 @@ import com.example.demo.Services.userDataService;
                     return userService.targetUserData(userID);
                 }
 
+        
             @GetMapping 
             public List<userData> AllUserList()
                 {
@@ -41,5 +49,23 @@ import com.example.demo.Services.userDataService;
                 //     );
                     return userService.AllData();
                 }
+        //-------------------------------------------------------------------------//
+
+            @PostMapping 
+            public String postUserData(userData user)
+                {
+                    return userService.addUser(user);
+                }
+                
+        //-------------------------------------------------------------------------//    
+        
+            
+            @PatchMapping("/{userID}")
+            @CrossOrigin 
+            public userData putUserData(@PathVariable Integer userID, @RequestBody userData partialDataChanges)
+            {
+                return userService.updateExistingUser(userID, partialDataChanges);
+            }
+ 
         };
 
