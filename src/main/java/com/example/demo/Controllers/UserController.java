@@ -66,6 +66,7 @@ import com.example.demo.Services.userDataService;
             */
             @PatchMapping("/{userID}")
             @CrossOrigin 
+            //Also the @RequestBody, fetches whatever data has been sent by the frontend in the patch call body
             public userData putUserData(@PathVariable Integer userID, @RequestBody userData partialDataChanges)
             {
                 return userService.updateExistingUser(userID, partialDataChanges);
