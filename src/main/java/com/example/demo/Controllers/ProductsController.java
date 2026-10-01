@@ -16,7 +16,7 @@ import com.example.demo.Services.userDataService;
 //Veru important to note, the RequestMAppign is declared for /products and any methods you declare inside the class, 
 //just gets added into the /products path
 @RestController 
- @RequestMapping ("/products")
+ @RequestMapping("/products")
         public class ProductsController{
 
             @Autowired 

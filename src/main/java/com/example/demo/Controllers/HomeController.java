@@ -1,7 +1,5 @@
 package com.example.demo.Controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,16 +25,16 @@ public class HomeController {
 
     //-------------------------------------------------------------------------//
 
-        @RequestMapping ("/products")
-        public List<userData> AllUserList()
-        {
-        //    List<userData> userDataList = Arrays.asList(
-        //          new userData(101,"Rehaan", "Makhija"),
-        //          new userData(102,"Nandini","Chaabra"),
-        //          new userData(103,"Tiya","Singh")
-        //     );
-            return userService.AllData();
-        }
+        // @RequestMapping ("/products")
+        // public List<userData> AllUserList()
+        // {
+        // //    List<userData> userDataList = Arrays.asList(
+        // //          new userData(101,"Rehaan", "Makhija"),
+        // //          new userData(102,"Nandini","Chaabra"),
+        // //          new userData(103,"Tiya","Singh")
+        // //     );
+        //     return userService.AllData();
+        // }
     //-------------------------------------------------------------------------//
 
     //Whatever value you fetch from the URL is By Default String, and you can do the type conversion using the 
@@ -56,7 +54,7 @@ public class HomeController {
     //-------------------------------------------------------------------------//
     
 }
-//Seperate class for each site such as {/users,/products, /home}
+
 
 
 

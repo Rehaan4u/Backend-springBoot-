@@ -11,6 +11,11 @@ public class userData {
     public String FirstName;
     public String LastName;  
 
+    public userData()
+    {
+        //An empty Constructor declaration required by JPA/Hibernate for the initiallization by usign the Java's reflection stratergy
+    }
+
     /*
      *VERY VERY IMPORTANT
         To declare the constructor as public, if not mentiioned explicitely every method and instance variable declared 
