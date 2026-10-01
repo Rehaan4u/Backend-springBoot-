@@ -1,3 +1,4 @@
-INSERT INTO user_data (id, first_name, last_name) VALUES (101, 'Rehaan', 'Makhija');
-INSERT INTO user_data (id, first_name, last_name) VALUES (102, 'Nandini', 'Chaabra');
-INSERT INTO user_data (id, first_name, last_name) VALUES (103, 'Tiya', 'Singh');
+INSERT INTO user_data (id, name, avatar, brief, passwd) VALUES
+(1, 'Harshad Bhandare(THE MANAGER)', 'user-1.jpg', 'Harshad is a Senior Software Developer with a passion for designing and developing robust software solutions at QNOPY. His work centers around building scalable applications, improving user experiences, and leveraging modern technologies to support environmental and field data management systems.', '3690'),
+(2, 'Onkar Kulkarni(THE SR TECH LEAD)', 'user-2.jpg', 'A skilled Software Engineer at QNOPY specializing in crafting innovative technology solutions for environmental and field data management. With a strong background in software development, he is passionate about delivering impactful and user-friendly applications.', '3690'),
+(3, 'Saurabh Gogte THE CEO', 'user-3.jpg', 'Saurabh brings his 20+ years of industry experience to drive innovation to create applications that help our clients streamline their environmental projects. His motto is make it simple and keep it simple.', '3690');

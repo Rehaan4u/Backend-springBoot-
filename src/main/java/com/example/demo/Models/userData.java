@@ -1,5 +1,6 @@
 package com.example.demo.Models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -8,8 +9,11 @@ public class userData {
 
     @Id 
     public Integer id;
-    public String FirstName;
-    public String LastName;  
+    public String name;
+    public String avatar;  
+    @Column(length = 2000)
+    public String brief;
+    public String passwd;
 
     public userData()
     {
@@ -21,9 +25,11 @@ public class userData {
         To declare the constructor as public, if not mentiioned explicitely every method and instance variable declared 
         inside the class, will have PRIVATE property by default 
     */
-    public userData(int id, String firstName, String lastName) {
+    public userData(Integer id, String name, String avatar, String brief, String passwd) {
         this.id= id;
-        this.FirstName=firstName;
-        this.LastName=lastName;
+        this.name=name;
+        this.avatar=avatar;
+        this.brief=brief;
+        this.passwd=passwd;
     }
 }

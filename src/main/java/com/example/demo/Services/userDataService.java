@@ -1,6 +1,5 @@
 package com.example.demo.Services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,18 +19,18 @@ public class userDataService {
     //Declared the Variable, basically an array for the userData Objects
 
         
-        protected  final List<userData> AllUsers= new ArrayList<>();
+        // protected  final List<userData> AllUsers= new ArrayList<>();
 
-        userDataService()
-        {
-            initialSomeValues();
-        }
+        // userDataService()
+        // {
+        //     initialSomeValues();
+        // }
 
-        public void initialSomeValues()
-        {
-            AllUsers.add(new userData(102,"Nandini","Chaabra"));
-            AllUsers.add(new userData(103,"Tiya","Singh"));
-        }
+        // public void initialSomeValues()
+        // {
+        //     AllUsers.add(new userData(102,"Nandini","Chaabra"));
+        //     AllUsers.add(new userData(103,"Tiya","Singh"));
+        // }
 //--------------------------------------------------------------------------------------------------------//
 
         public List<userData> AllData()
@@ -73,7 +72,7 @@ public class userDataService {
             //     }
             //     return user;
 
-            return userDataRepo.findById(Integer.parseInt(userID)).orElse(new userData(-1, "User NOT Found", "Check the ID"));
+            return userDataRepo.findById(Integer.parseInt(userID)).orElse(new userData(-1, "NULL", "Null", "NULL", "----"));
                 
         }
 
