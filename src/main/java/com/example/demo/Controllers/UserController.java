@@ -59,7 +59,11 @@ import com.example.demo.Services.userDataService;
                 
         //-------------------------------------------------------------------------//    
         
-            
+            /* Patch is different from Put, Put replaces the stored object with whatever new object you pass and if some of the parameter
+                are not getting changed, then by default it will fill it with NULL values
+                
+                Therefore, we prefer here to use, Patch instead of Put, cause we make the Patch callf rom teh frontend instead of put call
+            */
             @PatchMapping("/{userID}")
             @CrossOrigin 
             public userData putUserData(@PathVariable Integer userID, @RequestBody userData partialDataChanges)
