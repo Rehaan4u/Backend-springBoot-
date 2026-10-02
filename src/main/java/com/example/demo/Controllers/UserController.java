@@ -3,6 +3,8 @@ package com.example.demo.Controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -21,7 +23,7 @@ import com.example.demo.Services.userDataService;
 //just gets added into the /products path
 @RestController 
 @CrossOrigin 
- @RequestMapping("/users")
+@RequestMapping("/users")
         public class UserController{
 
             @Autowired 
@@ -49,15 +51,7 @@ import com.example.demo.Services.userDataService;
                 //     );
                     return userService.AllData();
                 }
-        //-------------------------------------------------------------------------//
-
-            @PostMapping 
-            public String postUserData(userData user)
-                {
-                    return userService.addUser(user);
-                }
-                
-        //-------------------------------------------------------------------------//    
+        //-------------------------------------------------------------------------// 
         
             /* Patch is different from Put, Put replaces the stored object with whatever new object you pass and if some of the parameter
                 are not getting changed, then by default it will fill it with NULL values
@@ -70,6 +64,19 @@ import com.example.demo.Services.userDataService;
             public userData putUserData(@PathVariable Integer userID, @RequestBody userData partialDataChanges)
             {
                 return userService.updateExistingUser(userID, partialDataChanges);
+            }
+
+        //-------------------------------------------------------------------------//   
+            
+            @PostMapping("/adduser")
+            @CrossOrigin
+            public ResponseEntity<userData> addingUser(@RequestBody userData newUser)
+            {
+               
+                return userService.addUser(newUser) //You receive the Optional<userData> till here
+                            .map((ResponseIsThere)-> ResponseEntity.status(HttpStatus.CREATED).body(ResponseIsThere))//If there is body then you status(Lambda function runs) and it transforms it into a 
+                            //ResponseEntity<userData>, otherwise it will not run and pass to the the below method
+                            .orElseGet(()-> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
             }
  
         };
