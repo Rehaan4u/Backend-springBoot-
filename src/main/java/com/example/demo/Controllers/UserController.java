@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,6 +79,15 @@ import com.example.demo.Services.userDataService;
                             .map((ResponseIsThere)-> ResponseEntity.status(HttpStatus.CREATED).body(ResponseIsThere))//If there is body then you status(Lambda function runs) and it transforms it into a 
                             //ResponseEntity<userData>, otherwise it will not run and pass to the the below method
                             .orElseGet(()-> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+            }
+
+            @CrossOrigin 
+            @DeleteMapping("/deleteUser")
+            public ResponseEntity<String> deleteExistingUser(@RequestHeader("Which-User") String userID)
+            {
+                return userService.deleteExistingUser(userID)
+                .map((Response) -> ResponseEntity.status(HttpStatus.ACCEPTED).body(Response))
+                .orElseGet(()->ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
             }
  
         };
