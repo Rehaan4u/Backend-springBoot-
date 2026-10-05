@@ -1,8 +1,10 @@
 package com.example.demo.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Models.userData;
@@ -16,6 +18,11 @@ public class userDataService {
     @Autowired 
     public userDataRepo userDataRepo;
     public userData userData;
+
+    @Value("${app.reqPasswd}")
+    private String expectedPasswd;
+    // private String officialPasswd= "3690";
+    // private String reqPasswd="2004";
 
     //Declared the Variable, basically an array for the userData Objects
 
@@ -76,24 +83,25 @@ public class userDataService {
             return userDataRepo.findById(Integer.parseInt(userID)).orElse(new userData(-1, "NULL", "Null", "NULL", "----"));
                 
         }
-
-
 //-------------------------------------------------------------------------------------//
 
-    public String addUser(userData userInput)
+    public Optional<userData> addUser(userData userInput, String passwd)
     {
+    
         // if(userInput!=null)
         // {
         //     AllUsers.add(userInput);
         //     return "User Added Sucessfully";
         // }
         // else return "Error in adding User";
-        userData userData = userDataRepo.save(userInput);
-        if(userData!= null){
-            return "User Added Succesfully";
+        if(passwd!=null && passwd.equals(expectedPasswd))
+        {
+            //Optional.of is ued to wrap the reponse into an Optional value
+            //Very important point to note here is that, save() send back the object,strong or whatever you pass as response
+            return Optional.of(userDataRepo.save(userInput));
         }
-        else return "Error in adding the user";
-        
+        //If password doen not match then sending the empty Optional<Void>
+        else return Optional.empty();
     }
 //--------------------------------------------------------------------------------------------------------//
 

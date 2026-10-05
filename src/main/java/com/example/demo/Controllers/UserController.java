@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -68,12 +69,12 @@ import com.example.demo.Services.userDataService;
 
         //-------------------------------------------------------------------------//   
             
-            @PostMapping("/adduser")
             @CrossOrigin
-            public ResponseEntity<userData> addingUser(@RequestBody userData newUser)
+            @PostMapping("/adduser")
+            public ResponseEntity<userData> addingUser(@RequestBody userData newUser, @RequestHeader("Admin-Passwd") String passwd)
             {
                
-                return userService.addUser(newUser) //You receive the Optional<userData> till here
+                return userService.addUser(newUser, passwd) //You receive the Optional<userData> till here
                             .map((ResponseIsThere)-> ResponseEntity.status(HttpStatus.CREATED).body(ResponseIsThere))//If there is body then you status(Lambda function runs) and it transforms it into a 
                             //ResponseEntity<userData>, otherwise it will not run and pass to the the below method
                             .orElseGet(()-> ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
