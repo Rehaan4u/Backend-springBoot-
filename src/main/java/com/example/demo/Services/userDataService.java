@@ -109,4 +109,24 @@ public class userDataService {
     {
         return this.userDataRepo.save(newUserData);
     }
+
+//--------------------------------------------------------------------------------------------------------//
+    public Optional<String> deleteExistingUser(String userId, String passwd)
+    {
+        if(passwd.equals(expectedPasswd))
+        {
+            //Basically First we find whether the user exist with this id,and if yes
+            if(userDataRepo.existsById(Integer.parseInt(userId)))
+             {
+            //then we delete the user Entry and return the userID that was deleted
+            userDataRepo.deleteById(Integer.parseInt(userId));
+            return Optional.of(userId);
+             }
+             else return Optional.empty();
+        //if no user exist we return the Empty response
+          }
+        
+        else return Optional.empty();
+    }
+
 }

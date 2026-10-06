@@ -83,9 +83,9 @@ import com.example.demo.Services.userDataService;
 
             @CrossOrigin 
             @DeleteMapping("/deleteUser")
-            public ResponseEntity<String> deleteExistingUser(@RequestHeader("Which-User") String userID)
+            public ResponseEntity<String> deleteExistingUser(@RequestHeader("Which-User") String userID, @RequestHeader ("Password") String passwd)
             {
-                return userService.deleteExistingUser(userID)
+                return userService.deleteExistingUser(userID,passwd)
                 .map((Response) -> ResponseEntity.status(HttpStatus.ACCEPTED).body(Response))
                 .orElseGet(()->ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
             }
