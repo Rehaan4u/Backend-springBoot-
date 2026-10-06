@@ -50,7 +50,7 @@ public class userDataService {
 
 //--------------------------------------------------------------------------------------------------------//
 
-        public userData targetUserData(String userID)
+        public Optional<userData> targetUserData(String userID)
         {
             // List<userData> listOfUsers = AllUsers;
             // int tgtID=Integer.parseInt(userID);
@@ -80,7 +80,11 @@ public class userDataService {
             //     }
             //     return user;
 
-            return userDataRepo.findById(Integer.parseInt(userID)).orElse(new userData(-1, "NULL", "Null", "NULL", "----"));
+                if(userDataRepo.existsById(Integer.parseInt(userID)))
+                {
+                    return userDataRepo.findById(Integer.parseInt(userID));
+                }
+                else return Optional.empty();
                 
         }
 //-------------------------------------------------------------------------------------//

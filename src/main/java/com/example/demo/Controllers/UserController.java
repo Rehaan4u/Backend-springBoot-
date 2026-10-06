@@ -36,10 +36,12 @@ import com.example.demo.Services.userDataService;
             //like here the request path would look like /products/userid 
             // like 101,102
             @GetMapping ("/{userID}")
-            public userData ProducstsWithParticularId(@PathVariable String userID)
+            public ResponseEntity<userData> ProducstsWithParticularId(@PathVariable String userID)
                 {   
                     
-                    return userService.targetUserData(userID);
+                    return userService.targetUserData(userID)
+                    .map((Response)->ResponseEntity.status(HttpStatus.ACCEPTED).body(Response))
+                    .orElseGet(()->ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
                 }
 
         
@@ -89,6 +91,14 @@ import com.example.demo.Services.userDataService;
                 .map((Response) -> ResponseEntity.status(HttpStatus.ACCEPTED).body(Response))
                 .orElseGet(()->ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
             }
- 
+
+            @CrossOrigin 
+            @GetMapping("/fullView/{userID}")
+            public ResponseEntity<userData> fullViewMethod(@PathVariable String userID)
+            {
+                return this.userService.targetUserData(userID).
+                    map((Response)-> ResponseEntity.status(HttpStatus.ACCEPTED).body(Response))
+                    .orElseGet(()-> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+            } 
         };
 
