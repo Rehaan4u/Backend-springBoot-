@@ -65,7 +65,19 @@
 			<artifactId>spring-boot-starter-validation-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	<!-- This dependency ensures that, the automatic headers read happens from the Headers, that is automatically inserted by the 
+HTTP_NTERCEPTOR in the frontend, this enabels the spring-boot to read those headers -->
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
 	</dependencies>
+
+
 
 	<build>
 		<plugins>
